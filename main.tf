@@ -4,7 +4,7 @@
 
 // my ec2 instance
 resource "aws_instance" "web" {
-  ami           = "ami-0e449927258d45bc4"
+  ami           = var.ami,id
   instance_type = "t3.micro"
 
   tags = {
@@ -54,7 +54,7 @@ resource "aws_security_group" "SG_travel" {
 //inbound rule for security group
 resource "aws_vpc_security_group_ingress_rule" "example" {
   security_group_id = aws_security_group.SG_travel.id
-  cidr_ipv4         = "129.222.206.25/32"
+  cidr_ipv4         = var.my_ips.id
   from_port         = 443
   ip_protocol       = "tcp"
   to_port           = 443
